@@ -1,3 +1,8 @@
+// ========== Supabase Initialization ==========
+const SUPABASE_URL = 'https://morswjkqqdfikucvuxur.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1vcnN3amtxcWRmaWt1Y3Z1eHVyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIxMjk2MDYsImV4cCI6MjA4NzcwNTYwNn0.BWC91vw0nXSTMap05j0tQAtXTUAsUZVmiwGbxlbs6fA';
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
 document.addEventListener('DOMContentLoaded', () => {
     // Mobile Menu Toggle
     const hamburger = document.querySelector('.hamburger');
@@ -22,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Sticky Navbar on Scroll
     const navbar = document.querySelector('.navbar');
-    
+
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
             navbar.classList.add('scrolled');
@@ -37,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('scroll', () => {
         let current = '';
-        
+
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.clientHeight;
@@ -149,22 +154,51 @@ if (document.querySelector('.booking-page')) {
     });
 
     // Simulate Payment Success
-    confirmPaymentBtn.addEventListener('click', () => {
+    confirmPaymentBtn.addEventListener('click', async () => {
         const upiInput = document.querySelector('.upi-form input').value;
         if (upiInput.length > 3) {
             confirmPaymentBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing...';
             confirmPaymentBtn.disabled = true;
 
-            setTimeout(() => {
+            const bookingData = {
+                student_name: document.querySelectorAll('.form-grid input')[0].value,
+                gender: document.querySelector('select').value,
+                student_email: document.querySelectorAll('.form-grid input')[1].value,
+                student_phone: document.querySelectorAll('.form-grid input')[2].value,
+                course: document.querySelectorAll('.form-grid input')[3].value,
+                year_of_study: document.querySelectorAll('select')[1].value,
+                parent_email: document.querySelectorAll('.form-grid input')[4].value,
+                parent_phone: document.querySelectorAll('.form-grid input')[5].value,
+                aadhaar_number: document.querySelectorAll('.form-grid input')[6].value,
+                srm_id: document.querySelectorAll('.form-grid input')[7].value,
+                property_name: "Sunrise Valley Penthouse",
+                token_amount: 5000,
+                payment_method: "UPI",
+                status: "Token Paid"
+            };
+
+            try {
+                // Insert into Supabase
+                const { data, error } = await supabase
+                    .from('bookings')
+                    .insert([bookingData]);
+
+                if (error) throw error;
+
+                // Move to success state
                 paymentModal.classList.remove('active');
                 successModal.classList.add('active');
-
-                // Reset standard button state
+            } catch (err) {
+                console.error("Booking Error:", err);
+                alert("Payment simulated, but failed to save to Database. Did you create the 'bookings' table in Supabase?");
+                paymentModal.classList.remove('active');
+                successModal.classList.add('active');
+            } finally {
                 setTimeout(() => {
                     confirmPaymentBtn.innerHTML = 'Verify & Pay';
                     confirmPaymentBtn.disabled = false;
                 }, 1000);
-            }, 2000); // 2 second delay to simulate payment network processing
+            }
         } else {
             alert('Please enter a valid UPI ID to proceed with the mock payment.');
         }
