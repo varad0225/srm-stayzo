@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SRM Stayzo | Book Property</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="booking-page">
+    <!-- Navbar -->
+    <header class="navbar scrolled">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-building-user"></i>
+                SRM <span>Stayzo</span>
+            </a>
+            <a href="index.html" class="btn btn-outline"><i class="fa-solid fa-arrow-left"></i> Cancel Booking</a>
+        </div>
+    </header>
+
+    <div class="container booking-container">
+        <!-- Booking Form Section -->
+        <div class="booking-content">
+            <div class="section-header">
+                <h2>Secure Your <span class="gradient-text">Space</span></h2>
+                <p>Fill out the required student information to proceed with booking.</p>
+            </div>
+
+            <form id="bookingForm" class="booking-form glass-panel">
+                <!-- Personal Info -->
+                <h3><i class="fa-regular fa-user"></i> Personal Information</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Student Full Name</label>
+                        <input type="text" required placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label>Gender</label>
+                        <select required>
+                            <option value="">Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Student Email ID</label>
+                        <input type="email" required placeholder="student@srmist.edu.in">
+                    </div>
+                    <div class="form-group">
+                        <label>Student Phone Number</label>
+                        <input type="tel" required placeholder="+91 XXXXX XXXXX">
+                    </div>
+                </div>
+
+                <!-- Academic Info -->
+                <h3 class="mt-4"><i class="fa-solid fa-graduation-cap"></i> Academic Details</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Course Name</label>
+                        <input type="text" required placeholder="e.g., B.Tech Computer Science">
+                    </div>
+                    <div class="form-group">
+                        <label>Year of Study</label>
+                        <select required>
+                            <option value="">Select Year</option>
+                            <option value="1">1st Year</option>
+                            <option value="2">2nd Year</option>
+                            <option value="3">3rd Year</option>
+                            <option value="4">4th Year</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Parent Info -->
+                <h3 class="mt-4"><i class="fa-solid fa-users"></i> Guardian Information</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Parent's Email ID</label>
+                        <input type="email" required placeholder="parent@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Parent's Phone Number</label>
+                        <input type="tel" required placeholder="+91 XXXXX XXXXX">
+                    </div>
+                </div>
+
+                <!-- Verification Documents -->
+                <h3 class="mt-4"><i class="fa-regular fa-id-card"></i> Verification Documents</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Aadhaar Card Number</label>
+                        <input type="text" required placeholder="XXXX XXXX XXXX" pattern="[0-9]{12}">
+                    </div>
+                    <div class="form-group">
+                        <label>SRM Registration Number</label>
+                        <input type="text" required placeholder="e.g., RA21110...">
+                    </div>
+                </div>
+
+                <div class="document-upload mt-2">
+                    <label>Upload Aadhaar (Front & Back)</label>
+                    <div class="upload-area">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                        <p>Click or drag files to upload</p>
+                        <small>Max 5MB. PDF, JPG, PNG.</small>
+                    </div>
+                </div>
+                <div class="document-upload mt-2">
+                    <label>Upload SRM ID Card</label>
+                    <div class="upload-area">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                        <p>Click or drag file to upload</p>
+                    </div>
+                </div>
+
+                <!-- Terms and Conditions -->
+                <div class="terms-section mt-4">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="termsCheck" required>
+                        <span class="checkmark"></span>
+                        I have read and accept the <a href="#" class="gradient-text">Terms and Conditions</a>.
+                    </label>
+                    <div class="info-alert mt-2">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <p><strong>Refundable Token Policy:</strong> A secure token payment is required to block this
+                            property. The token is fully refundable if the physical property does not match the provided
+                            photos and videos upon visit.</p>
+                    </div>
+                </div>
+
+                <div class="form-actions mt-4">
+                    <button type="button" id="payTokenBtn" class="btn btn-primary btn-large w-full" disabled>
+                        <i class="fa-solid fa-shield-cat"></i> Pay Token Amount (₹5,000)
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Property Summary Sidebar -->
+        <div class="booking-sidebar">
+            <div class="glass-panel summary-card">
+                <img src="assets/flat_modern.png" alt="Property" class="summary-img">
+                <div class="summary-details">
+                    <div class="tag tag-featured mb-2" style="position: static; display: inline-block;">Premium</div>
+                    <h3>Sunrise Valley Penthouse</h3>
+                    <p class="text-muted"><i class="fa-solid fa-location-dot"></i> Estancia, Near SRM</p>
+
+                    <div class="summary-divider"></div>
+
+                    <div class="summary-row">
+                        <span>Monthly Rent</span>
+                        <strong>₹18,000</strong>
+                    </div>
+                    <div class="summary-row">
+                        <span>Security Deposit</span>
+                        <strong>₹50,000</strong>
+                    </div>
+                    <div class="summary-row highlight-row">
+                        <span>Token Amount (Refundable)</span>
+                        <strong>₹5,000</strong>
+                    </div>
+
+                    <div class="summary-divider"></div>
+                    <ul class="summary-perks">
+                        <li><i class="fa-solid fa-check text-green"></i> Zero Brokerage</li>
+                        <li><i class="fa-solid fa-check text-green"></i> 100% Verified Property</li>
+                        <li><i class="fa-solid fa-check text-green"></i> Instant Support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Gateway Modal -->
+    <div class="modal-overlay" id="paymentModal">
+        <div class="payment-modal glass-panel">
+            <div class="modal-header">
+                <h3>Secure Payment</h3>
+                <button class="close-modal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="payment-amount">
+                    <span>Amount to Pay</span>
+                    <h2>₹5,000.00</h2>
+                </div>
+
+                <div class="payment-methods">
+                    <div class="method active">
+                        <i class="fa-brands fa-google-pay"></i> UPI
+                    </div>
+                    <div class="method">
+                        <i class="fa-regular fa-credit-card"></i> Card
+                    </div>
+                    <div class="method">
+                        <i class="fa-solid fa-building-columns"></i> Net Banking
+                    </div>
+                </div>
+
+                <div class="upi-form">
+                    <label>Enter UPI ID</label>
+                    <input type="text" placeholder="example@upi">
+                    <button class="btn btn-search w-full mt-2" id="confirmPaymentBtn">Verify & Pay</button>
+                </div>
+
+                <div class="payment-secure">
+                    <i class="fa-solid fa-lock"></i> 100% Secure Encrypted Payment gateway
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Success Modal -->
+    <div class="modal-overlay" id="successModal">
+        <div class="success-modal glass-panel center">
+            <div class="success-icon">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h2>Payment Successful!</h2>
+            <p>Your token amount of ₹5,000 has been received securely.</p>
+            <p class="text-muted text-sm mt-2">Booking ID: #STZ-84930</p>
+            <a href="index.html" class="btn btn-primary w-full mt-4">Return to Home</a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

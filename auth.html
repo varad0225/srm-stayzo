@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SRM Stayzo | Login & Sign Up</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="auth-page">
+    <!-- Navbar (Simplified for Auth Page) -->
+    <header class="navbar scrolled">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-building-user"></i>
+                SRM <span>Stayzo</span>
+            </a>
+            <a href="index.html" class="btn btn-outline"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+        </div>
+    </header>
+
+    <div class="auth-container">
+        <div class="auth-box">
+            <h2 class="center">Welcome to <span class="gradient-text">Stayzo</span></h2>
+            <p class="center text-muted mb-4">Log in or create an account to continue.</p>
+
+            <!-- Role Toggle -->
+            <div class="auth-tabs">
+                <button class="tab-btn active" data-target="student-form">I'm a Student</button>
+                <button class="tab-btn" data-target="host-form">I'm a Host</button>
+            </div>
+
+            <!-- Student Form -->
+            <div id="student-form" class="auth-form-container active-form">
+                <form class="auth-form">
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <div class="input-wrapper">
+                            <i class="fa-regular fa-envelope"></i>
+                            <input type="email" placeholder="student@srmist.edu.in" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" placeholder="••••••••" required>
+                        </div>
+                    </div>
+                    <div class="form-options">
+                        <label class="checkbox-container">
+                            <input type="checkbox">
+                            <span class="checkmark"></span> Remember me
+                        </label>
+                        <a href="#" class="forgot-password">Forgot Password?</a>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-full btn-large">Login as Student</button>
+                </form>
+                <div class="divider-text"><span>or continue with</span></div>
+                <button class="btn btn-outline w-full btn-social"><i class="fa-brands fa-google"></i> Google</button>
+                <p class="auth-footer">Don't have an account? <a href="#" class="gradient-text">Sign up</a></p>
+            </div>
+
+            <!-- Host Form -->
+            <div id="host-form" class="auth-form-container">
+                <form class="auth-form">
+                    <div class="form-group">
+                        <label>Host Email Address</label>
+                        <div class="input-wrapper">
+                            <i class="fa-regular fa-envelope"></i>
+                            <input type="email" placeholder="host@example.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" placeholder="••••••••" required>
+                        </div>
+                    </div>
+                    <div class="form-options">
+                        <label class="checkbox-container">
+                            <input type="checkbox">
+                            <span class="checkmark"></span> Remember me
+                        </label>
+                        <a href="#" class="forgot-password">Forgot Password?</a>
+                    </div>
+                    <button type="submit" class="btn btn-search w-full btn-large">Login to Dashboard</button>
+                </form>
+                <div class="divider-text"><span>or continue with</span></div>
+                <button class="btn btn-outline w-full btn-social"><i class="fa-brands fa-google"></i> Google</button>
+                <p class="auth-footer">Want to list a property? <a href="#" class="gradient-text">Register as Host</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
